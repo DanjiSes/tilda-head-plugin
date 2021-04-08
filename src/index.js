@@ -19,6 +19,8 @@ $(function() {
   video.autoplay = true
   video.controls = false
 
+  console.log(video);
+
   video.play()
 
   let ctaTimerId = null
@@ -42,6 +44,7 @@ $(function() {
         video.muted = false
         $widget.addClass('active')
 
+        video.currentTime = 0
         ctaTimerId = window.setTimeout(() => $widget.find('.s-cta').fadeIn(), __sCTA.ctaDelay * 1000)
       })
       .on('click', '.s-close', function(e) {
