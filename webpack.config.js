@@ -41,7 +41,6 @@ module.exports = {
   mode: 'development',
   entry: {
     bundle: ['@babel/polyfill', './index.js'],
-    settings: './settings.js',
   },
   devtool: isDev && 'source-map',
   output: {
