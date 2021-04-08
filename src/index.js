@@ -1,13 +1,14 @@
 import './style.scss'
 
-const __sCTA = window.sCTA || {
+const __sCTA = {
   text: 'КЛИКАЙ СЮДА',
   link: 'https://savchenko.dev',
   newWindow: true,
-  background: '#ffe100',
-  color: '#000',
+  primaryColor: '#ffe100',
+  textColor: '#000',
   ctaDelay: 3, // sec
   recId: '#rec301537474',
+  ...(window.sCTA || {}),
 }
 
 $(function() {
@@ -25,16 +26,27 @@ $(function() {
   let ctaTimerId = null
   let lastTime = 0
 
+  const $styles = `
+    <style>
+      .s-head.active { border-color: ${__sCTA.primaryColor} !important; }
+      .s-head:hover:not(.active) { border-color: ${__sCTA.primaryColor} !important; }
+      .s-head .s-close::after, .s-head .s-close::before {
+        background: ${__sCTA.primaryColor} !important;
+      }
+      .s-head .s-minimize { border-color: ${__sCTA.primaryColor} !important; }
+      .s-head .s-cta {
+        color: ${__sCTA.textColor} !important;
+        background: ${__sCTA.primaryColor} !important;
+      }
+    </style>
+  `
+
   const $widget = $(`
-    <div class="s-head">
+    <div class="s-head" style="border-color: ${__sCTA.border};">
       <div class="s-close"></div>
       <div class="s-minimize"></div>
       <a class="s-cta t-text" href="${__sCTA.link}"
-         style="
-          color: ${__sCTA.color};
-          background: ${__sCTA.background};
-         "
-         ${__sCTA.newWindow ? 'target="_blank"' : ''}
+        ${__sCTA.newWindow ? 'target="_blank"' : ''}
       >
         ${__sCTA.text}
       </a>
@@ -76,5 +88,6 @@ $(function() {
   $widget.append($video)
 
   $('body').append($widget)
+  $('body').append($styles)
 })
 
