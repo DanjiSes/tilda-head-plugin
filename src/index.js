@@ -7,10 +7,11 @@ const __sCTA = window.sCTA || {
   background: '#ffe100',
   color: '#000',
   ctaDelay: 3, // sec
+  recId: '#rec301537474',
 }
 
 $(function() {
-  const $rec = $('#rec301537474').hide()
+  const $rec = $(__sCTA.recId).hide()
   const $video = $rec.find('video')
   const [video] = $video.get()
 
