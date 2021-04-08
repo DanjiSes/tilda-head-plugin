@@ -58,6 +58,7 @@ $(function() {
         video.muted = true
         $widget.removeClass('active')
         $widget.find('.s-cta').hide();
+        window.clearInterval(ctaTimerId)
       })
 
   $widget.append($video)
