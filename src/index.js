@@ -20,11 +20,10 @@ $(function() {
   video.autoplay = true
   video.controls = false
 
-  console.log(video);
-
   video.play()
 
   let ctaTimerId = null
+  let lastTime = 0
 
   const $widget = $(`
     <div class="s-head">
@@ -41,11 +40,16 @@ $(function() {
       </a>
     </div>
   `)
-      .on('click', function(e) {
+      .on('click', ':not(.s-cta)', function(e) {
+        video.play()
+
+        if ($widget.hasClass('active')) return
+
         video.muted = false
+        video.currentTime = lastTime
+
         $widget.addClass('active')
 
-        video.currentTime = 0
         ctaTimerId = window.setTimeout(() => $widget.find('.s-cta').fadeIn(), __sCTA.ctaDelay * 1000)
       })
       .on('click', '.s-close', function(e) {
@@ -63,6 +67,10 @@ $(function() {
         $widget.removeClass('active')
         $widget.find('.s-cta').hide();
         window.clearInterval(ctaTimerId)
+        lastTime = video.currentTime
+      })
+      .on('click', '.s-cta', function() {
+        video.pause()
       })
 
   $widget.append($video)

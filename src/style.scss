@@ -21,6 +21,10 @@ $primary: #ffe100;
     width: 280px;
     height: 500px;
     border-color: $primary;
+
+    .s-close {
+      display: none;
+    }
   }
 
   &:not(.active) {
@@ -95,6 +99,16 @@ $primary: #ffe100;
       }
 
       transform: scale(1.2)
+    }
+
+    @media screen and (max-width: 768px) {
+      visibility: visible;
+      opacity: 1;
+
+      &::after, &::before {
+        background: #fff;
+        height: 1px;
+      }
     }
   }
 
