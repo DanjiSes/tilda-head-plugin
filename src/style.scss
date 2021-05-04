@@ -1,4 +1,11 @@
 $primary: #ffe100;
+$vdg-fallback-image: none;
+
+@import "~vidage/src/styles/vidage";
+
+.vidage {
+  position: absolute;
+}
 
 .s-head {
   position: fixed;

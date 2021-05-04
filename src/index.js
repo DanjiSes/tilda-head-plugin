@@ -1,3 +1,5 @@
+import Vidage from 'vidage'
+
 import './style.scss'
 
 const __sCTA = {
@@ -11,17 +13,28 @@ const __sCTA = {
   ...(window.sCTA || {}),
 }
 
+// <video loop="" autoplay="" playsinline="" preload="auto" controlslist="nodownload" disablepictureinpicture="" class="sc-AxhCb KNKgh" src="https://app.getreview.io/uploads/videos/VoTPrj3dJt5DOxD3/dQHC1UMa0LoYfxKX.mp4"></video>
+
 $(function() {
   const $rec = $(__sCTA.recId).hide()
   const $video = $rec.find('video')
   const [video] = $video.get()
 
   video.muted = true
-  video.loop = true
   video.autoplay = true
+  video.loop = true
+  video.preload = 'metadata'
   video.controls = false
 
-  video.play()
+  $video.attr('id', 'vidage')
+  $video.attr('class', 'vidage-video')
+
+  const $vidageEl = $(`
+    <div class="vidage" style="width: 100%; height: 100%">
+    </div>
+  `)
+
+  $video.appendTo($vidageEl)
 
   let ctaTimerId = null
   let lastTime = 0
@@ -82,12 +95,14 @@ $(function() {
         lastTime = video.currentTime
       })
       .on('click', '.s-cta', function() {
-        video.pause()
+        $widget.removeClass('active')
       })
 
-  $widget.append($video)
+  $widget.append($vidageEl)
 
   $('body').append($widget)
   $('body').append($styles)
+
+  new Vidage('#vidage')
 })
 
