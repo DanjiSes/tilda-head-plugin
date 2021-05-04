@@ -17,7 +17,7 @@ const __sCTA = {
 
 $(function() {
   const $rec = $(__sCTA.recId).hide()
-  const $video = $rec.find('video')
+  const $video = $rec.find('video').clone()
   const [video] = $video.get()
 
   video.muted = true
@@ -28,6 +28,7 @@ $(function() {
 
   $video.attr('id', 'vidage')
   $video.attr('class', 'vidage-video')
+  $video.attr('playsinline', '')
 
   const $vidageEl = $(`
     <div class="vidage" style="width: 100%; height: 100%">
