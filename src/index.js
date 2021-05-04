@@ -13,9 +13,10 @@ const __sCTA = {
 
 $(function() {
   const $rec = $(__sCTA.recId).hide()
-  const $video = $rec.find('video')
+  const $video = $rec.find('video').clone()
   const [video] = $video.get()
 
+  $video.attr('playsinline', '')
   video.muted = true
   video.loop = true
   video.autoplay = true
