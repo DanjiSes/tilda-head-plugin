@@ -17,6 +17,7 @@ $(function() {
   const [video] = $video.get()
 
   $video.attr('playsinline', '')
+  $video.attr('muted', '')
   video.muted = true
   video.loop = true
   video.autoplay = true
