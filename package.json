@@ -25,6 +25,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
+    "create-hash-file-webpack": "^1.0.4",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.0",
     "eslint": "^7.23.0",

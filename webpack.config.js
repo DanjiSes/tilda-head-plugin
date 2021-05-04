@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 /**
  * Plugins
@@ -6,6 +7,7 @@ const path = require('path');
 
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CreateHashFileWebpack = require('create-hash-file-webpack')
 
 /**
  * Config
@@ -62,6 +64,15 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: filename('css'),
     }),
+    new CreateHashFileWebpack([
+      {
+        // path to folder in which the file will be created
+        path: './dist',
+        // file name
+        fileName: 'install.js',
+        // content of the file
+        content: fs.readFileSync('./src/install.js').toString(),
+      }]),
   ],
 
   // Loaders
@@ -84,6 +95,10 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: jsLoaders(),
+      },
+      {
+        test: /\.txt$/i,
+        use: 'raw-loader',
       },
     ],
   },
