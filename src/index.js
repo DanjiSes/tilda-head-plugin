@@ -20,6 +20,7 @@ $(function() {
   const $video = $rec.find('video').clone()
   const [video] = $video.get()
 
+  $video.attr('playsinline', '')
   video.muted = true
   video.autoplay = true
   video.loop = true
